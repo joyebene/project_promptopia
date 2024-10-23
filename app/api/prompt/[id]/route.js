@@ -8,7 +8,7 @@ export const GET = async (req, { params }) => {
 
     const prompt = await Prompt.findById(params.id).populate("creator");
 
-    if (!prompt) return new Response("Prompt not found", { status: 404 });
+    if (!prompt) return new Response("Prompt not Found", { status: 404 });
 
     return new Response(JSON.stringify(prompt), { status: 200 });
   } catch (error) {
@@ -25,7 +25,7 @@ export const PaTCH = async (req, { params }) => {
     const existingPrompt = await Prompt.findById(params.id);
 
     if (!existingPrompt)
-      return new Response("Prompt not found", { status: 4040 });
+      return new Response("Prompt not found", { status: 404 });
 
     existingPrompt.prompt = prompt;
     existingPrompt.tag = tag;

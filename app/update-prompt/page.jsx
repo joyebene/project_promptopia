@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
 const EditPrompt = () => {
   const router = useRouter();
-  const SearchParams = useSearchParams();
-  const promptId = SearchParams.get('id');
+  const searchParams = useSearchParams();
+  const promptId = searchParams.get('id');
 
 
   const [submitting, setSubmitting] = useState(false);
@@ -24,9 +23,10 @@ const EditPrompt = () => {
         const data = await response.json();
 
         setPost({
-            prompt: data.tag,
+            prompt: data.prompt,
             tag: data.tag,
         })
+        
     }
 
     if(promptId) getPromptDetails()
